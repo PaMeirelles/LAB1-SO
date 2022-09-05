@@ -1,6 +1,7 @@
 { pkgs }: {
 	deps = [
-		pkgs.clang_12
+		pkgs.valgrind-light
+  pkgs.clang_12
 		pkgs.ccls
 		pkgs.gdb
 		pkgs.gnumake

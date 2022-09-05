@@ -62,4 +62,8 @@ void test_sum(int size, char mode, void (*sum)(int *, int *, int *, int)){
   
   gettimeofday(&stop, NULL);
   printf("Process finished in %.3fms\n", timedifference_msec(start, stop));
+  
+  free(vec_a);
+  free(vec_b);
+  free(vec_c);
 }
