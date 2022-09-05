@@ -5,7 +5,12 @@
 
 void print_vector(int * vector, int size){
   for(int i=0; i < size; i++){
+    if (i < 5 || i > size - 5){
     printf("%*d ", 10, vector[i]);
+    }
+    else if (i == 5){
+      printf(". . . ");
+    }
   }
   printf("\n");
 }
