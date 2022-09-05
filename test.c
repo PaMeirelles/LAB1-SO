@@ -1,6 +1,7 @@
 #include "sum.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "timer.h"
 
 void print_vector(int * vector, int size){
   for(int i=0; i < size; i++){
@@ -23,6 +24,8 @@ void fill_vector(int size, int * vector, int filler){
 
 
 void test_sum(int size, char mode, void (*sum)(int *, int *, int *, int)){
+  struct timeval start, stop;
+  gettimeofday(&start, NULL);
   int * vec_a = malloc(sizeof(int) * size);
   int * vec_b = malloc(sizeof(int) * size);
   int * vec_c = malloc(sizeof(int) * size);
@@ -56,4 +59,7 @@ void test_sum(int size, char mode, void (*sum)(int *, int *, int *, int)){
   print_vector(vec_a, size);
   print_vector(vec_b, size);
   print_vector(vec_c, size);
+  
+  gettimeofday(&stop, NULL);
+  printf("Process finished in %.3fms\n", timedifference_msec(start, stop));
 }
