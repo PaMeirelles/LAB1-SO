@@ -5,6 +5,6 @@
 // Felipe Mello --Tua matrícula--
 
 int main(void) {
-  test_sum(10, 's', naive_vector_sum);
+  test_sum(10, 'b', naive_vector_sum);
   return 0;
 }

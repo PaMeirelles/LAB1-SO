@@ -5,7 +5,7 @@
 
 void print_vector(int * vector, int size){
   for(int i=0; i < size; i++){
-    printf("%d ", vector[i]);
+    printf("%*d ", 10, vector[i]);
   }
   printf("\n");
 }
