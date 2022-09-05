@@ -1,0 +1,1 @@
+void test_sum(int size, char mode, void (*sum)(int *, int *, int *, int));
