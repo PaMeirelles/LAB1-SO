@@ -1,5 +1,13 @@
 {
   "files": {
+    "main.c": [
+      {
+        "id": "3ad098cf-4fd9-4a80-b395-1ea735b5d03a",
+        "line": 24,
+        "version": 302,
+        "index": 380
+      }
+    ],
     "sum.c": [
       {
         "id": "5b23aa44-e78f-4f4c-81e2-f16077db9655",
@@ -11,9 +19,9 @@
     "test.c": [
       {
         "id": "5ed426e9-49de-4cd9-b3e7-e48b33c1065f",
-        "line": 63,
-        "version": 32,
-        "index": 1318
+        "line": 29,
+        "version": 43,
+        "index": 633
       }
     ]
   }
