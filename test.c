@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include "timer.h"
 
-void print_vector(int * vector, int size){
+void print_vector(int * vector, int size)
+{
   for(int i=0; i < size; i++){
     if (i < 5 || i > size - 5){
     printf("%*d ", 10, vector[i]);
@@ -15,22 +16,26 @@ void print_vector(int * vector, int size){
   printf("\n");
 }
 
-void random_filler(int size, int * vector, int bound){
+void random_filler(int size, int * vector, int bound)
+{
   for(int i=0; i < size; i++){
     vector[i] = rand() % bound;
   }
 }
 
-void fill_vector(int size, int * vector, int filler){
+void fill_vector(int size, int * vector, int filler)
+{
   for(int i=0; i < size; i++){
     vector[i] = filler;
   }
 }
 
-
-void test_sum(int size, char mode, void (*sum)(int *, int *, int *, int)){
+void test_sum(int size, int index, char mode, void (*sum)(int *, int *, int *, int))
+{
+  
   struct timeval start, stop;
   gettimeofday(&start, NULL);
+  
   int * vec_a = malloc(sizeof(int) * size);
   int * vec_b = malloc(sizeof(int) * size);
   int * vec_c = malloc(sizeof(int) * size);
@@ -44,8 +49,8 @@ void test_sum(int size, char mode, void (*sum)(int *, int *, int *, int)){
       break;
     }
     case 'c':{
-      fill_vector(size, vec_a, rand() % 10);
-      fill_vector(size, vec_b, rand() % 10);
+      fill_vector(size, vec_a, 1);
+      fill_vector(size, vec_b, 2);
       break;
     }
     case 's':{
@@ -59,7 +64,7 @@ void test_sum(int size, char mode, void (*sum)(int *, int *, int *, int)){
     }
   }
 
-  sum(vec_a, vec_b, vec_c, size);
+  sum(vec_a, vec_b, vec_c, size, index);
 
   print_vector(vec_a, size);
   print_vector(vec_b, size);
