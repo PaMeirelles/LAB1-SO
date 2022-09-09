@@ -26,7 +26,7 @@ void fill_vector(int size, int *vector, int filler) {
   }
 }
 
-void test_sum(int size, int index, char mode, void (*sum)(int *, int *, int *, int, int)) {
+void test_sum(int size, char mode, void (*sum)(int *, int *, int *, int, int)) {
 
   struct timeval start, stop;
   gettimeofday(&start, NULL);
@@ -36,7 +36,7 @@ void test_sum(int size, int index, char mode, void (*sum)(int *, int *, int *, i
   int *vec_c = malloc(sizeof(int) * size);
 
   fill_vector(size, vec_c, 0);
-
+  
   switch (mode) {
     case 'z': {
       fill_vector(size, vec_a, 0);
@@ -58,12 +58,12 @@ void test_sum(int size, int index, char mode, void (*sum)(int *, int *, int *, i
       random_filler(size, vec_b, RAND_MAX / 2);
     }
   }
-
-  sum(vec_a, vec_b, vec_c, size, index);
-
-  /*print_vector(vec_a, size);
+  
+  sum(vec_a, vec_b, vec_c, 0, size);
+  
+  print_vector(vec_a, size);
   print_vector(vec_b, size);
-  print_vector(vec_c, size);*/
+  print_vector(vec_c, size);
 
   gettimeofday(&stop, NULL);
   printf("Process finished in %.3fms\n", timedifference_msec(start, stop));
@@ -71,4 +71,5 @@ void test_sum(int size, int index, char mode, void (*sum)(int *, int *, int *, i
   free(vec_a);
   free(vec_b);
   free(vec_c);
+  
 }

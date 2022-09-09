@@ -10,23 +10,8 @@
 #define NUM_PROCESSES 8
 
 int main(void) {
-
-  int index = 0, status, id;
-
-  for (int i = 0; i < NUM_PROCESSES; ++i) {
-    
-    if((id =fork()) < 0) 
-    {
-      exit(0);
-    }
-    else if(id == 0)
-    {
-    test_sum(1000, index, 'c', naive_vector_sum);
-    }
-  
-    index += 125;
-  }
-    waitpid (-1, &status, 0);
+  test_sum(1000, 'c', naive_vector_sum);
+  test_sum(1000, 'c', fancy_vector_sum);
 
   return 0;
 }
