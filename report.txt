@@ -1,0 +1,7 @@
+Inicialmente, vemos que o processo paralelo é muito mais demorado. 
+Isso ocorre pois o comando "fork" leva um tempo para criar um subprocesso, fazendo com que a soma paralela comece atrasada.
+Conforme aumentamos o tamanho do vetor, verificamos que a soma paralela começa a alcancar em velocidade.
+No último teste, com tamanho 10^8, eles virtualmente se equiparam.
+Infelizmente, não consegui realizar o teste derradeiro com tamanho 10^9, pois meu PC não possui a quantidade de RAM necessária.
+10^9 * 4 = 4GB
+Entretanto, esses testes são suficientes para observar a diferença de tempo entre os métodos

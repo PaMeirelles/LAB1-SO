@@ -1,9 +1,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/wait.h>
+#include <stdio.h>
+#include "test.h"
 #include <sys/shm.h>
 #include <sys/stat.h>
-#include <stdio.h>
 
 #define NUM_PROCESSES 8
 void naive_vector_sum(int * vec_a, int * vec_b, int * vec_c, int start, int end)
@@ -16,11 +17,9 @@ void naive_vector_sum(int * vec_a, int * vec_b, int * vec_c, int start, int end)
 
 void fancy_vector_sum(int * vec_a, int * vec_b, int * vec_c, int start, int end)
 {
-  int size = end - start, status, id, segmento, pid;
+  int size = end - start, status, id, pid;
   int * temp_vec;
-segmento = shmget (IPC_PRIVATE, sizeof (int) * size, IPC_CREAT | IPC_EXCL | S_IRUSR | S_IWUSR);
   for (int i = 0; i < NUM_PROCESSES; i++) {
-    temp_vec = (int *) shmat (segmento, 0, 0); 
     if ((id = fork()) < 0)
       {
       printf("Erro na criação do novo processo");
@@ -28,17 +27,12 @@ segmento = shmget (IPC_PRIVATE, sizeof (int) * size, IPC_CREAT | IPC_EXCL | S_IR
       }
       else if (id == 0)
       {
-      printf("hey\n");
       naive_vector_sum(vec_a, vec_b, vec_c, i * (size / NUM_PROCESSES), (i+1) * (size / NUM_PROCESSES));
       }
       else
       {
       pid = wait (&status);
-        exit(-1);
+      exit(-1);
       }
-      // libera a memória compartilhada do processo
-      shmdt (temp_vec);
-      // libera a memória compartilhada
-      shmctl (segmento, IPC_RMID, 0);
-        }
+    }
 }
