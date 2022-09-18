@@ -10,7 +10,7 @@
 #define NUM_PROCESSES 8
 
 int main(void) {
-  for(int i = 1000; i <= 100000000; i *= 10){
+  for(int i = 1000; i <= 1000; i *= 10){
     complete_test(i);
   }
   return 0;

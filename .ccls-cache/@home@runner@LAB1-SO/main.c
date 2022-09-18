@@ -10,8 +10,8 @@
 #define NUM_PROCESSES 8
 
 int main(void) {
-  test_sum(1000, 'c', naive_vector_sum);
-  test_sum(1000, 'c', fancy_vector_sum);
-
+  for(int i = 1000; i <= 1000; i *= 10){
+    complete_test(i);
+  }
   return 0;
 }

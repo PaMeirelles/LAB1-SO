@@ -106,12 +106,15 @@ void complete_test(int size){
 
   for(int i = 0; i < 4; i++){
   printf("\nTeste %d: \n-----------\n\n\n", i+1);
+  
   printf("Soma tradicional: \n");
   test_sum(size, modes[i], naive_vector_sum, 'l');
 
   printf("\nSoma paralela: \n");
   test_sum(size, modes[i], fancy_vector_sum, 'p');
-
+  
+    printf("\nSoma com threads: \n");
+  test_sum(size, modes[i], thread_vector_sum, 'p');
   }
   
 

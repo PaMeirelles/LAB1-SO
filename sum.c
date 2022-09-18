@@ -3,10 +3,15 @@
 #include <sys/wait.h>
 #include <stdio.h>
 #include "test.h"
+#include "sum.h"
+
 #include <sys/shm.h>
 #include <sys/stat.h>
+#include <pthread.h>
+
 
 #define NUM_PROCESSES 8
+#define NUM_THREADS 8
 void naive_vector_sum(int * vec_a, int * vec_b, int * vec_c, int start, int end)
 {
   for(int i = start; i < end; i++)
@@ -33,6 +38,36 @@ void fancy_vector_sum(int * vec_a, int * vec_b, int * vec_c, int start, int end)
       {
       pid = wait (&status);
       exit(-1);
-      }
+        }
     }
+  }
+void *wrapper(void *par){
+  p * parametros = (p*)par;
+  naive_vector_sum(parametros->vec_a, parametros->vec_b, parametros->vec_c, parametros->start, parametros->end);
+  pthread_exit(0);
+}
+void thread_vector_sum(int * vec_a, int * vec_b, int * vec_c, int start, int end){
+  pthread_t threads[NUM_THREADS];
+  int *vetA, *vetB, *vetC;
+  p *parametros[NUM_THREADS];
+  int i;
+  int size = end - start;
+
+  for(i = 0; i < NUM_THREADS; i++){
+    parametros[i] = (p*)malloc(sizeof(p));
+
+    parametros[i]->vec_a = vec_a;
+    parametros[i]->vec_b = vec_b;
+    parametros[i]->vec_c = vec_c;
+    parametros[i]->start = i*(size / NUM_THREADS);
+    parametros[i]->end = (i+1)*(size / NUM_THREADS);
+
+    pthread_create(&threads[i], NULL, wrapper, (void *)parametros[i]);
+  }
+
+  for(i = 0; i < NUM_THREADS; i++){
+    pthread_join(threads[i], NULL);
+
+    free(parametros[i]);
+  }
 }
