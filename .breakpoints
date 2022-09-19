@@ -4,24 +4,24 @@
       {
         "id": "3ad098cf-4fd9-4a80-b395-1ea735b5d03a",
         "line": 17,
-        "version": 527,
+        "version": 582,
         "index": 545
       }
     ],
     "sum.c": [
       {
         "id": "5b23aa44-e78f-4f4c-81e2-f16077db9655",
-        "line": 8,
-        "version": 239,
-        "index": 191
+        "line": 1,
+        "version": 2486,
+        "index": 0
       }
     ],
     "test.c": [
       {
         "id": "5ed426e9-49de-4cd9-b3e7-e48b33c1065f",
-        "line": 75,
-        "version": 881,
-        "index": 2196
+        "line": 121,
+        "version": 923,
+        "index": 3512
       }
     ]
   }

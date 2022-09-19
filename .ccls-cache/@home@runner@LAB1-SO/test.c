@@ -113,8 +113,8 @@ void complete_test(int size){
   printf("\nSoma paralela: \n");
   test_sum(size, modes[i], fancy_vector_sum, 'p');
   
-    printf("\nSoma com threads: \n");
-  test_sum(size, modes[i], thread_vector_sum, 'p');
+  printf("\nSoma com threads: \n");
+  test_sum(size, modes[i], thread_vector_sum, 'l');
   }
   
 
